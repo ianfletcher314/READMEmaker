@@ -1,8 +1,9 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer')
 const fs = require('fs')
-const {generateMarkdown} = require('./utils/generateMarkdown');
-const { title } = require('process');
+const generateMarkdown = require('./utils/generateMarkdown');
+console.log(generateMarkdown)
+// const { title } = require('process');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -15,11 +16,11 @@ const questions = [
         message: 'Please enter a description of your project',
         name: 'description',
     },
-    {
-        type: 'input',
-        message: 'Please enter your table of contents',
-        name: 'tableOfContents',
-    },
+    // {
+    //     type: 'input',
+    //     message: 'Please enter your table of contents',
+    //     name: 'tableOfContents',
+    // },
     {
         type: 'input',
         message: 'Please enter information on the instalation of your project',
@@ -42,7 +43,8 @@ const questions = [
         choices: [
             "MIT",
             "Apache",
-            "GPLv2"
+            "GPLv2",
+            "None",
         ]
     },
     {
@@ -80,10 +82,12 @@ function init() {
     inquirer
         .prompt(questions)
         .then((data) => {
+            // why doesnt this work???
+            var markdown = generateMarkdown(data)
+            // console.log(markdown)
             const title = `${data.title}`;
-            console.log(data)
 
-            fs.writeFile(`${title}.html`, JSON.stringify(data, null, '\t'), (err) =>
+            fs.writeFile(`${title}.md`, markdown, (err) =>
               err ? console.log(err) : console.log('Success!')
             );
           });
