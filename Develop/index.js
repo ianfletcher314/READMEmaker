@@ -3,7 +3,6 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const generateMarkdown = require('./utils/generateMarkdown');
 console.log(generateMarkdown)
-// const { title } = require('process');
 // TODO: Create an array of questions for user input
 const questions = [
     {
@@ -16,11 +15,6 @@ const questions = [
         message: 'Please enter a description of your project',
         name: 'description',
     },
-    // {
-    //     type: 'input',
-    //     message: 'Please enter your table of contents',
-    //     name: 'tableOfContents',
-    // },
     {
         type: 'input',
         message: 'Please enter information on the instalation of your project',
@@ -69,16 +63,9 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    // fs.writeFile('README.html', process.argv[2], (err) =>
-    //     err ? console.error(err) : console.log('Success!')
-    //     );
-}
 
-// TODO: Create a function to initialize app
+// TODO: Create a function to initialize app 
 function init() {
-    console.log("init function running")
     inquirer
         .prompt(questions)
         .then((data) => {
